@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 
 // Importaciones de tus activos
-import imgConcreto from "../assets/concreto.jpg";
+import imgConcreto from "../assets/Concreto.jpg";
 import imgSuelos from "../assets/suelos.jpg";
 import imgEquipos from "../assets/Comprobaciones.png";
 
