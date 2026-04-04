@@ -24,6 +24,7 @@ import Alquiler from "../assets/services/alquiler.png";
 
 // 2. ACTUALIZAMOS LA INTERFAZ PARA INCLUIR LA IMAGEN
 interface ServicioProps {
+  
   id: number;
   titulo: string;
   descripcion: string;
