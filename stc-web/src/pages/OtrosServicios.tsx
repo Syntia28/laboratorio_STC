@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 // Importaciones de tus activos
-import imgConcreto from "../assets/Concreto.jpg";
+import imgConcreto from "../assets/concreto.jpg";
 import imgSuelos from "../assets/suelos.jpg";
-import imgEquipos from "../assets/Comprobaciones.png";
+import imgEquipos from "../assets/comprobaciones.png";
 
 interface EquipoItem {
   nombre: string;

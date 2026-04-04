@@ -14,13 +14,13 @@ import {
 } from "lucide-react";
 
 // 1. TUS IMPORTACIONES DE IMÁGENES
-import ControlObras from "../assets/services/ControlObras.png";
-import Expedientes from "../assets/services/Expedientes.jpg";
-import Pavimentos from "../assets/services/Pavimentos.jpg";
+import ControlObras from "../assets/services/controlObras.png";
+import Expedientes from "../assets/services/expedientes.jpg";
+import Pavimentos from "../assets/services/pavimentos.jpg";
 import Saneamiento from "../assets/services/Saneamiento.png";
-import Topografia from "../assets/services/Topográfia.jpg";
-import Suelos from "../assets/services/Suelos.jpg";
-import Alquiler from "../assets/services/Alquiler.png";
+import Topografia from "../assets/services/topográfia.jpg";
+import Suelos from "../assets/services/suelos.jpg";
+import Alquiler from "../assets/services/alquiler.png";
 
 // 2. ACTUALIZAMOS LA INTERFAZ PARA INCLUIR LA IMAGEN
 interface ServicioProps {
