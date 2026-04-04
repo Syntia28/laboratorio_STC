@@ -58,9 +58,10 @@ const Footer: React.FC = () => {
                   SUELO TECH <span className="text-[#00B0F0]">CONTROL</span>
                 </h3>
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em] leading-tight">
-                  Ingeniería y Construcción S.A.C.
+                  Ingeniería y Construcción S.A.C. 
                 </p>
               </div>
+              
             </div>
             <p className="text-sm text-gray-300 leading-relaxed max-w-md">
               Líderes en geotecnia y control de materiales en Cajamarca.
