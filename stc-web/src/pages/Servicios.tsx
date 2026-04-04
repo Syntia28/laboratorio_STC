@@ -13,18 +13,16 @@ import {
   Landmark,
 } from "lucide-react";
 
-// 1. TUS IMPORTACIONES DE IMÁGENES
+// --- CORRECCIÓN DE IMPORTACIONES (TODO EN MINÚSCULAS Y SIN TILDES) ---
 import ControlObras from "../assets/services/controlObras.png";
 import Expedientes from "../assets/services/expedientes.jpg";
 import Pavimentos from "../assets/services/pavimentos.jpg";
-import Saneamiento from "../assets/services/Saneamiento.png";
-import Topografia from "../assets/services/topográfia.jpg";
+import Saneamiento from "../assets/services/saneamiento.png"; // De 'Saneamiento.png' a 'saneamiento.png'
+import Topografia from "../assets/services/topografia.jpg"; // De 'topográfica.jpg' a 'topografia.jpg'
 import Suelos from "../assets/services/suelos.jpg";
 import Alquiler from "../assets/services/alquiler.png";
 
-// 2. ACTUALIZAMOS LA INTERFAZ PARA INCLUIR LA IMAGEN
 interface ServicioProps {
-  
   id: number;
   titulo: string;
   descripcion: string;
@@ -70,7 +68,7 @@ const serviciosData: ServicioProps[] = [
     ],
     entregables: [
       "Informes de supervisión periódicos",
-      "Reportes de control  de calidad",
+      "Reportes de control de calidad",
       "Observaciones técnicas y recomendaciones",
     ],
     icon: <HardHat size={32} />,
@@ -176,7 +174,7 @@ const serviciosData: ServicioProps[] = [
     entregables: [
       "Equipos operativos y calibrados",
       "Soporte técnico durante el alquiler",
-      "•	Certificados de calibración (cuando aplique)",
+      "Certificados de calibración (cuando aplique)",
     ],
     icon: <Settings size={32} />,
     imagen: Alquiler,
@@ -196,7 +194,6 @@ export default function Servicios() {
 
   return (
     <div className="bg-slate-100 text-slate-800 min-h-screen pb-24 overflow-x-hidden selection:bg-[#00B0F0]/30">
-      {/* --- HEADER --- */}
       <section className="relative py-32 bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <motion.h1
@@ -210,7 +207,6 @@ export default function Servicios() {
         </div>
       </section>
 
-      {/* --- GRID EN ZIG-ZAG CON IMÁGENES REALES --- */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <motion.div
           variants={containerVariants}
@@ -228,19 +224,16 @@ export default function Servicios() {
                 index % 2 !== 0 ? "lg:flex-row-reverse" : "lg:flex-row"
               }`}
             >
-              {/* BLOQUE FOTO / IMAGEN DINÁMICA */}
               <div className="lg:w-2/5 group w-full">
                 <div className="relative aspect-square md:aspect-video lg:aspect-square bg-white border border-slate-200 rounded-[60px] overflow-hidden transition-all duration-700 hover:border-[#00B0F0]/50 shadow-2xl">
                   <div className="absolute top-6 left-8 text-8xl font-black text-slate-900/[0.05] z-10">
                     0{servicio.id}
                   </div>
-
                   <img
                     src={servicio.imagen}
                     alt={servicio.titulo}
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
                   />
-
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="p-8 bg-white/80 rounded-[40px] text-[#00B0F0] shadow-2xl backdrop-blur-sm border border-slate-200/50 group-hover:scale-90 transition-transform duration-500">
                       {servicio.icon}
@@ -249,7 +242,6 @@ export default function Servicios() {
                 </div>
               </div>
 
-              {/* BLOQUE TÉCNICO */}
               <div className="lg:w-3/5 space-y-8 w-full">
                 <div>
                   <h3 className="text-4xl md:text-5xl font-black text-[#0070C0] mb-4 uppercase tracking-tighter italic leading-none">
@@ -261,7 +253,6 @@ export default function Servicios() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                  {/* ALCANCE */}
                   <div className="bg-white/70 p-7 rounded-3xl border border-slate-200 backdrop-blur-sm">
                     <h4 className="flex items-center gap-2 font-black text-xs tracking-[0.3em] text-slate-800 uppercase mb-6 opacity-80">
                       <Zap size={16} className="text-[#00B0F0]" /> Alcance
@@ -283,7 +274,6 @@ export default function Servicios() {
                     </ul>
                   </div>
 
-                  {/* ENTREGABLES */}
                   <div className="space-y-5">
                     <h4 className="flex items-center gap-2 font-black text-xs tracking-[0.3em] text-slate-800 uppercase opacity-80">
                       <ClipboardCheck size={16} className="text-[#00B0F0]" />{" "}
