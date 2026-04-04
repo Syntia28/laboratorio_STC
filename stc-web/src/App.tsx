@@ -9,6 +9,7 @@ import Contacto from './pages/Contacto';
 import OtrosServicios from './pages/OtrosServicios';
 
 function App() {
+  
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-stc-dark text-white font-sans">
