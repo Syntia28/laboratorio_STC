@@ -17,10 +17,10 @@ import {
 import ControlObras from "../assets/services/controlObras.png";
 import Expedientes from "../assets/services/expedientes.jpg";
 import Pavimentos from "../assets/services/pavimentos.jpg";
-import Saneamiento from "../assets/services/saneamiento.png"; // De 'Saneamiento.png' a 'saneamiento.png'
-import Topografia from "../assets/services/topografia.jpg"; // De 'topográfica.jpg' a 'topografia.jpg'
+import Saneamiento from "../assets/services/saneamiento.png"; 
 import Suelos from "../assets/services/suelos.jpg";
 import Alquiler from "../assets/services/alquiler.png";
+import topografia from "../assets/services/topografia.jpg";
 
 interface ServicioProps {
   id: number;
@@ -118,7 +118,7 @@ const serviciosData: ServicioProps[] = [
       "Modelo digital del terreno (MDT)",
     ],
     icon: <Compass size={32} />,
-    imagen: Topografia,
+    imagen: topografia,
   },
   {
     id: 5,
