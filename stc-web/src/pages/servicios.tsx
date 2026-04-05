@@ -13,7 +13,6 @@ import {
   Landmark,
 } from "lucide-react";
 
-// --- CORRECCIÓN DE IMPORTACIONES (TODO EN MINÚSCULAS Y SIN TILDES) ---
 import ControlObras from "../assets/services/controlObras.png";
 import Expedientes from "../assets/services/expedientes.jpg";
 import Pavimentos from "../assets/services/pavimentos.jpg";

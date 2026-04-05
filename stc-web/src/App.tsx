@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from './components/navigation';
 import Footer from './components/footer';
-import Inicio from './pages/Inicio';
-import Nosotros from './pages/Nosotros';
-import Servicios from './pages/Servicios';
-import Laboratorio from './pages/Laboratorio';
-import Contacto from './pages/Contacto';
-import OtrosServicios from './pages/OtrosServicios';
+import Inicio from './pages/inicio';
+import Nosotros from './pages/nosotros';
+import Servicios from './pages/servicios';
+import Laboratorio from './pages/laboratorio';
+import Contacto from './pages/contacto';
+import OtrosServicios from './pages/otrosServicios';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
             <Route path="/servicios" element={<Servicios />} />
             <Route path="/laboratorio" element={<Laboratorio />} />
             <Route path="/contacto" element={<Contacto />} />
-            <Route path="/otros-servicios" element={<OtrosServicios />} />
+            <Route path="/otrosservicios" element={<OtrosServicios />} />
           </Routes>
         </main>
         <Footer />
