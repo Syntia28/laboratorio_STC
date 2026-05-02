@@ -130,13 +130,15 @@ export default function Inicio() {
           </p>
 
           <div className="flex flex-wrap gap-5">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3 bg-[#0070C0] text-white px-10 py-4 rounded-full font-black text-lg shadow-lg shadow-[#0070C0]/30 hover:bg-[#00B0F0] transition-all"
-            >
-              Nuestros Servicios <ArrowRight size={20} />
-            </motion.button>
+            <Link to="/servicios">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 bg-[#0070C0] text-white px-10 py-4 rounded-full font-black text-lg shadow-lg shadow-[#0070C0]/30 hover:bg-[#00B0F0] transition-all"
+              >
+                Nuestros Servicios <ArrowRight size={20} />
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
 
