@@ -1,4 +1,5 @@
 import { motion, type Variants } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import {
   Microscope,
   Droplets,
@@ -6,6 +7,7 @@ import {
   Layers,
   TestTube2,
   Zap,
+  X,
 } from "lucide-react";
 
 interface CategoriaEnsayo {
@@ -14,25 +16,42 @@ interface CategoriaEnsayo {
   imagen: string;
   subcategorias: {
     nombre: string;
+    imagen?: string;
     ensayos: string[];
   }[];
 }
+
+import imgAgregadosFisicos from "../assets/laboratorio/agregadosFísicos.png";
+import imgAgregadosQuimicos from "../assets/laboratorio/agregadosQuímicos.jpg";
+import imgAlbanileria from "../assets/laboratorio/albanieria.jpg";
+import imgConcreto from "../assets/laboratorio/concreto.png";
+import imgConcretoMTC from "../assets/laboratorio/concretoMTC.png";
+import imgControlConcreto from "../assets/laboratorio/controlConcreto.png";
+import imgEnsayosClasificacion from "../assets/laboratorio/ensayosClasificación.jpg";
+import imgEnsayosCompactacion from "../assets/laboratorio/ensayosCompactación.png";
+import imgEnsayosQuimicos from "../assets/laboratorio/ensayosQuímicos.jpg";
+import imgEstructural from "../assets/laboratorio/estructural.png";
+import imgEstudioCantera from "../assets/laboratorio/estudioCanta.png";
+import imgMecanismoSuelo from "../assets/laboratorio/mecanisnoSuelo.png";
+import imgMortero from "../assets/laboratorio/mortero.png";
+import imgResistenciaDeformacion from "../assets/laboratorio/resistenciaDeformación.png";
+import imgVariosEnsayos from "../assets/laboratorio/variosEnsayos.png";
 
 const categoriasEnsayos: CategoriaEnsayo[] = [
   {
     titulo: "Tecnología del Concreto",
     icon: <Construction size={30} />,
-    imagen:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800",
+    imagen: imgAgregadosFisicos,
     subcategorias: [
       {
         nombre: "Ensayos de Agregados (Físicos)",
+        imagen: imgAgregadosFisicos,
         ensayos: [
           "Muestreo de agregados — MTC E 201",
           "Análisis granulométrico — MTC E 204",
           "Material que pasa malla Nº 200 — MTC E 202",
           "Peso unitario y porcentaje de vacíos — MTC E 203",
-          "Gravedad específica   y absorción (agregado fino) — MTC E 205",
+          "Gravedad específica y absorción (agregado fino) — MTC E 205",
           "Peso específico y absorción (agregado grueso) — MTC E 206",
           "Desgaste Los Ángeles — MTC E 207",
           "Partículas fracturadas — MTC E 210",
@@ -42,6 +61,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Ensayos de Agregados (Químicos)",
+        imagen: imgAgregadosQuimicos,
         ensayos: [
           "Durabilidad al sulfato — MTC E 209",
           "Equivalente de arena — MTC E 114",
@@ -53,6 +73,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Diseño y Control de Concreto",
+        imagen: imgConcreto,
         ensayos: [
           "Diseño de mezcla — EG-2013",
           "Revenimiento (Slump) — EG-2013",
@@ -67,11 +88,11 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
   {
     titulo: "ESTUDIO DE MECÁNICA DE SUELOS",
     icon: <Layers size={30} />,
-    imagen:
-      "https://images.unsplash.com/photo-1596468698188-756f7ef57e2c?q=80&w=800",
+    imagen: imgMecanismoSuelo,
     subcategorias: [
       {
         nombre: "Exploración y Muestreo",
+        imagen: imgMecanismoSuelo,
         ensayos: [
           "Excavación y muestreo (calicatas / SPT) — MTC E 101",
           "Ensayo SPT — MTC E 101",
@@ -83,6 +104,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Ensayos de Clasificación",
+        imagen: imgEnsayosClasificacion,
         ensayos: [
           "Contenido de humedad natural — MTC E 108",
           "Análisis granulométrico — MTC E 107",
@@ -94,6 +116,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Ensayos de Compactación",
+        imagen: imgEnsayosCompactacion,
         ensayos: [
           "Proctor estándar — MTC E 115",
           "Proctor modificado — MTC E 116",
@@ -102,6 +125,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Ensayos químicos",
+        imagen: imgEnsayosQuimicos,
         ensayos: [
           "Contenido de Sales Solubles Totales — NTP 339.152",
           "Determinación de pH — NTP 339.176",
@@ -111,6 +135,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Ensayos de Resistencia y Deformación",
+        imagen: imgResistenciaDeformacion,
         ensayos: [
           "Corte directo — MTC E 131",
           "Triaxial (UU, CU, CD) — MTC E 133",
@@ -120,10 +145,11 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "ESTUDIO DE CANTERAS",
+        imagen: imgEstudioCantera,
         ensayos: [
           "Muestreo — MTC E 201",
           "Granulometría — MTC E 204",
-          "|Límites de Atterberg — MTC E 110 / 111",
+          "Límites de Atterberg — MTC E 110 / 111",
           "Equivalente de arena — MTC E 114",
           "Proctor — MTC E 115 / 116",
           "CBR — MTC E 132",
@@ -138,11 +164,11 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
   {
     titulo: "ENSAYOS EN LABAÑILERIA",
     icon: <TestTube2 size={30} />,
-    imagen:
-      "https://images.unsplash.com/photo-1590486803833-ffc6f71d808b?q=80&w=800",
+    imagen: imgAlbanileria,
     subcategorias: [
       {
         nombre: "ENSAYOS EN ALBAÑILERÍA",
+        imagen: imgAlbanileria,
         ensayos: [
           "Formas Refractarias",
           "Esfuerzo a compresión de ladrillo y formas refractarias — NTP 331.021",
@@ -153,6 +179,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Albañilería de Concreto",
+        imagen: imgConcreto,
         ensayos: [
           "Esfuerzo a compresión — NTP 399.604",
           "Refrentado de unidades de albañilería — NTP 399.604",
@@ -162,6 +189,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Albañilería de Arcilla",
+        imagen: imgMortero,
         ensayos: [
           "Esfuerzo a compresión — NTP 399.613",
           "Porcentaje de vacíos — NTP 399.613",
@@ -178,11 +206,11 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
   {
     titulo: "VARIOS ENSAYO",
     icon: <Droplets size={30} />,
-    imagen:
-      "https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?q=80&w=800",
+    imagen: imgVariosEnsayos,
     subcategorias: [
       {
         nombre: "Concreto",
+        imagen: imgConcretoMTC,
         ensayos: [
           "Toma de muestras de concreto fresco — MTC E 701",
           "Elaboración y curado de especímenes en el laboratorio — MTC E 702",
@@ -194,6 +222,7 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Mortero",
+        imagen: imgMortero,
         ensayos: [
           "Fabricación y toma de muestras — ASTM C305",
           "Esfuerzo a compresión — ASTM C109",
@@ -201,20 +230,23 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Evaluación Estructural",
+        imagen: imgEstructural,
         ensayos: [
           "Esclerometría (Número de rebote) — MTC E 725",
           "Extracción de núcleos con diamantina (Toma de núcleos) — MTC E 707",
           "Medida de la longitud de núcleos de concreto — MTC E 712",
           "Ensayo de carbonatación (fenolftaleína)",
-          "Cloruros solubles en concreto endurecido (Concentración de ión cloruro) — MTC E 720",
+          "Cloruros solubles en concreto endurecido — MTC E 720",
         ],
       },
       {
         nombre: "Suelo - Cemento",
-        ensayos: ["•	Esfuerzo a compresión ASTM D1633"],
+        imagen: imgEstudioCantera,
+        ensayos: ["Esfuerzo a compresión ASTM D1633"],
       },
       {
         nombre: "Otros Ensayos de Concreto (Según MTC)",
+        imagen: imgControlConcreto,
         ensayos: [
           "Refrentado de cilindros de concreto (Capping) — MTC E 703",
           "Ensayo de tracción indirecta de cilindros — MTC E 708",
@@ -225,15 +257,17 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Rocas",
+        imagen: imgResistenciaDeformacion,
         ensayos: [
           "Compresión simple — ASTM D2938",
           "Carga Puntual — ASTM D5731",
           "Abrasión — ASTM C535",
-          "Propiedades físicas (Humedad, Densidad, Absorción, Porosidad) — ASTM C97",
+          "Propiedades físicas — ASTM C97",
         ],
       },
       {
         nombre: "Agua",
+        imagen: imgEnsayosQuimicos,
         ensayos: [
           "Sólidos en suspensión ASTM C1603",
           "Materia Orgánica NTP 339.072",
@@ -245,10 +279,11 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
       },
       {
         nombre: "Pavimentos",
+        imagen: imgVariosEnsayos,
         ensayos: [
           "Análisis granulométrico — ASTM D5444",
           "Lavado Asfáltico — ASTM D2172",
-          "Medida De La deflexión De Un Pavimento Flexible Empleando La Viga Benkelman MTC E 1002",
+          "Medida de deflexión Viga Benkelman MTC E 1002",
         ],
       },
     ],
@@ -256,6 +291,19 @@ const categoriasEnsayos: CategoriaEnsayo[] = [
 ];
 
 export default function Laboratorio() {
+  const [modalImage, setModalImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setModalImage(null);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const openModal = (src: string) => setModalImage(src);
+  const closeModal = () => setModalImage(null);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
@@ -268,6 +316,41 @@ export default function Laboratorio() {
 
   return (
     <div className="bg-slate-100 text-slate-800 min-h-screen pb-24 overflow-x-hidden selection:bg-[#00B0F0]/30 selection:text-slate-800">
+      {modalImage && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center"
+        >
+          <div
+            className="absolute inset-0 bg-black/60"
+            onClick={closeModal}
+          />
+
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative z-50 max-w-[90%] max-h-[90%] p-4"
+          >
+            <button
+              onClick={closeModal}
+              aria-label="Cerrar imagen"
+              className="absolute top-2 right-2 p-2 rounded-full bg-white/90 shadow-lg"
+            >
+              <X size={20} />
+            </button>
+
+            <img
+              src={modalImage}
+              alt="Ampliación"
+              className="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-md"
+            />
+          </motion.div>
+        </motion.div>
+      )}
       {/* --- CABECERA (HERO) --- */}
       <section className="relative py-32 bg-white border-b border-slate-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
@@ -299,7 +382,7 @@ export default function Laboratorio() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.05 }}
-          className="grid gap-24 min-h-[500px]"
+          className="grid gap-24"
         >
           {categoriasEnsayos.map((cat, index) => (
             <motion.div
@@ -311,11 +394,13 @@ export default function Laboratorio() {
             >
               {/* BLOQUE FOTO */}
               <div className="lg:w-2/5 group w-full relative">
-                <div className="relative aspect-[4/3] overflow-hidden rounded-[50px] border border-slate-200 shadow-2xl transition-all duration-700 hover:border-[#00B0F0]/50 group bg-white">
-                  <img
-                    src={cat.imagen}
-                    alt={cat.titulo}
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[50px] border border-slate-200 shadow-2xl transition-all duration-700 hover:border-[#00B0F0]/50 bg-white">
+                    <img
+                      src={cat.imagen}
+                      alt={cat.titulo}
+                      onClick={() => openModal(cat.imagen)}
+                      role="button"
+                      className="w-full h-full object-cover max-h-[520px] transition-transform duration-1000 group-hover:scale-110 cursor-pointer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-100/50 to-white/90 group-hover:opacity-60 transition-opacity duration-700"></div>
 
@@ -335,7 +420,7 @@ export default function Laboratorio() {
                 </div>
               </div>
 
-              {/* BLOQUE DE LISTA TÉCNICA */}
+              {/* BLOQUE DE LISTA TÉCNICA CORREGIDO */}
               <div className="lg:w-3/5 space-y-8 w-full">
                 <div className="space-y-6">
                   {cat.subcategorias.map((sub, idx) => (
@@ -343,23 +428,40 @@ export default function Laboratorio() {
                       key={idx}
                       className="bg-white border border-slate-200/80 p-7 rounded-3xl hover:bg-slate-50 transition-colors shadow-lg"
                     >
-                      <h3 className="text-[#0070C0] font-black text-xs uppercase tracking-[0.2em] mb-6 flex items-center gap-2 border-b border-[#00B0F0]/50 pb-2 w-fit">
-                        <Zap size={16} className="text-[#00B0F0]" />{" "}
-                        {sub.nombre}
-                      </h3>
-                      <ul className="space-y-3">
-                        {sub.ensayos.map((ensayo, eIdx) => (
-                          <li
-                            key={eIdx}
-                            className="flex items-start gap-3 group/item"
-                          >
-                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0 group-hover/item:bg-[#00B0F0] transition-colors" />
-                            <p className="text-xs text-slate-600 group-hover/item:text-slate-800 transition-colors leading-relaxed">
-                              {ensayo}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="md:flex md:items-stretch md:gap-6">
+                        {sub.imagen && (
+                          <div className="md:w-2/5 w-full md:h-auto h-44 flex-shrink-0 rounded-[28px] overflow-hidden mb-4 md:mb-0 relative z-10">
+                            <img
+                              src={sub.imagen}
+                              alt={sub.nombre}
+                              onClick={() => sub.imagen && openModal(sub.imagen)}
+                              role="button"
+                              className="w-full h-full object-cover rounded-[28px] border border-slate-200 shadow-2xl cursor-pointer"
+                            />
+                          </div>
+                        )}
+
+                        <div className="flex-1">
+                          <h3 className="text-[#0070C0] font-black text-xs uppercase tracking-[0.2em] mb-4 flex items-center gap-2 border-b border-[#00B0F0]/50 pb-2 w-fit">
+                            <Zap size={16} className="text-[#00B0F0]" />{" "}
+                            {sub.nombre}
+                          </h3>
+
+                          <ul className="space-y-3">
+                            {sub.ensayos.map((ensayo, eIdx) => (
+                              <li
+                                key={eIdx}
+                                className="flex items-start gap-3 group/item"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full bg-slate-300 mt-1.5 flex-shrink-0 group-hover/item:bg-[#00B0F0] transition-colors" />
+                                <p className="text-xs text-slate-600 group-hover/item:text-slate-800 transition-colors leading-relaxed">
+                                  {ensayo}
+                                </p>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -369,7 +471,7 @@ export default function Laboratorio() {
         </motion.div>
       </section>
 
-      {/* --- BANNER INFORMATIVO FINAL --- */}
+      {/* --- BANNER FINAL --- */}
       <section className="max-w-7xl mx-auto px-6 mb-10 mt-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -385,8 +487,7 @@ export default function Laboratorio() {
           <p className="text-slate-800 text-xl md:text-2xl font-black italic tracking-tighter leading-tight uppercase max-w-4xl mx-auto">
             “Todos nuestros ensayos se rigen bajo las normativas{" "}
             <span className="text-[#00B0F0]">MTC, ASTM, NTP y EG-2013</span>,
-            garantizando precisión técnica y soluciones confiables para cada
-            proyecto.”
+            garantizando precisión técnica y soluciones confiables.”
           </p>
         </motion.div>
       </section>
