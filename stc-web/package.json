@@ -16,6 +16,7 @@
     "@tsparticles/slim": "^3.9.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.344.0",
+    "pdfjs-dist": "^5.7.284",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.6.0",
@@ -37,5 +38,4 @@
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2"
   }
-  
 }
